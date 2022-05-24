@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "declaration": false,
+    "jsx": "react",
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "types": [
+      "react"
+    ],
+    "moduleResolution": "node",
+    "allowJs": false,
+    "module": "esnext",
+    "target": "es5",
+    "sourceMap": true,
+    "removeComments": false,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedLocals": false,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "strict": true,
+    "esModuleInterop": true,
+  }
+}
