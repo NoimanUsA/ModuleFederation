@@ -1,0 +1,27 @@
+.header {
+  background-color: #20232A;
+
+  &__nav {
+    display: flex;
+
+    list-style: none;
+  }
+
+  &__nav-link {
+    padding: 10px;
+
+    color: white;
+    text-decoration: none;
+
+    border-bottom: 5px solid transparent;
+  &--active {
+    color: #00ADDD;
+
+    border-bottom: 5px solid #00ADDD;
+  }
+    &:hover {
+      color: #00ADDD;
+    }
+  }
+
+}

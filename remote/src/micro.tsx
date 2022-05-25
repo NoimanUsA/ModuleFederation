@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import App from './App';
 
 render(
-        <App />,
+  <App />,
   // eslint-disable-next-line no-undef
-  document.getElementById( 'root' ),
+  document.getElementById('root'),
 );

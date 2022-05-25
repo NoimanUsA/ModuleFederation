@@ -1,6 +1,4 @@
 import { merge } from "webpack-merge";
-import { dirname } from "path";
-import { fileURLToPath } from "url";
 import common from "./webpack.common.js";
 import webpack from "webpack";
 import packageJson from "./package.json" assert { type: "json" };

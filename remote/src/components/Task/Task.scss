@@ -1,0 +1,21 @@
+.task {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+
+  color: white;
+
+  text-align: center;
+
+  background-color: #00addd;
+  border-radius: 5px;
+
+  &__title {
+    font-weight: 500;
+  }
+
+  &__date-start,
+  &__date-end {
+    margin-top: 5px;
+  }
+}

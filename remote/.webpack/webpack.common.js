@@ -6,18 +6,13 @@ import "dotenv/config";
 import Dotenv from "dotenv-webpack";
 import StylelintPlugin from "stylelint-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
-// import webpack from "webpack";
-// import packageJson from "./package.json" assert { type: "json" };
-
-// const { ModuleFederationPlugin } = webpack.container;
-// const { dependencies: deps } = packageJson;
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-
+console.log(path.join(__dirname, "../src"));
 export default {
-  entry: ["@babel/polyfill", "./src/index.jsx"],
+  entry: ["@babel/polyfill", "./src/index.tsx"],
   output: {
-    path: path.resolve(__dirname, "./dist"),
+    path: path.resolve(__dirname, "../dist"),
     filename: "[name].[hash].js",
     publicPath: "auto",
   },
@@ -28,7 +23,7 @@ export default {
   resolve: {
     extensions: [".json", ".jsx", ".tsx", ".ts", ".js", ".mjs", ".d.ts"],
     alias: {
-      "@": "./src",
+      "@": path.join(__dirname, "../src"),
     },
   },
   plugins: [
