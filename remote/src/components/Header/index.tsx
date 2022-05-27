@@ -13,7 +13,7 @@ interface IProps {
   className?: string
 }
 
-export const Header: React.FC<IProps> = (props) => {
+export const Header: React.FC<IProps> = ({ className }) => {
   const navs = [
     {
       text: "Все задачи",
@@ -26,11 +26,11 @@ export const Header: React.FC<IProps> = (props) => {
   ];
 
   return (
-    <header className={`header ${props.className}`}>
+    <header className={`header ${className}`}>
       <nav className="header__nav">
         {navs.map((link, index) => {
           return (
-            <NavLink className="header__nav-link" activeClassName='header__nav-link--active' to={link.path}>{link.text}</NavLink>)
+            <NavLink key={index} className="header__nav-link" activeClassName='header__nav-link--active' to={link.path}>{link.text}</NavLink>)
         })}
       </nav>
     </header>

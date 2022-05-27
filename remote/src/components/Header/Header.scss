@@ -1,5 +1,5 @@
 .header {
-  background-color: #20232A;
+  background-color: var(--dark-color);
 
   &__nav {
     display: flex;
@@ -15,12 +15,12 @@
 
     border-bottom: 5px solid transparent;
   &--active {
-    color: #00ADDD;
+    color: var(--main-color);
 
-    border-bottom: 5px solid #00ADDD;
+    border-bottom: 5px solid var(--main-color);
   }
     &:hover {
-      color: #00ADDD;
+      color: var(--main-color);
     }
   }
 

@@ -1,24 +1,22 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import './Task.scss'
-import { ITask } from "@/components/types";
+
+// Types
+import { ITask } from '@/types/components';
 
 interface IProps {
   task: ITask;
+  children?: ReactNode;
+  className?: string;
 }
 
-export const Task: React.FC<IProps> = (props) => {
-  const { task } = props;
-
+export const Task: React.FC<IProps> = ({ task, className, children }) => {
   return (
-    <div className="task">
-      <div className="task__title">
-        {task.description}
+    <div className={`task ${className}`}>
+      <div className="task__text">
+        {task.text}
       </div>
-      <div className="task__date-start">
-        {task["date_start"]}
-      </div>
-      {task["date_end"] || <div className="task__date-end">{task["date_end"]}
-      </div>}
+      <div className="task__handlers">{children}</div>
     </div>
   )
 }

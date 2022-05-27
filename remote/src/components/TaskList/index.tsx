@@ -4,30 +4,30 @@ import './TaskList.scss'
 // Components
 import { Task } from "@/components/Task";
 
-import { ITask } from "@/components/types";
+// Types
+import { ITask } from "@/types/components";
 
 interface IProps {
-  tasks: ITask[]
+  tasks: ITask[];
+  title?: string;
 }
 
-export const TaskList: React.FC<IProps> = (props) => {
+export const TaskList: React.FC<IProps> = ({ tasks, title = "Нет задач" }) => {
   function renderTasks(tasks: ITask[]) {
-    return tasks.map((task: ITask) => {
+    return tasks.map((task: ITask, index: number) => {
       return (
-        <Task task={task} />
+        <Task task={task} key={index} className="actial-tasks__task" />
       )
     })
   };
 
   return (
-    <div className={props.tasks ? 'task-list' : 'task-list task-list--empty'}>
-      <div className="task-list__inner">
-        {
-          props.tasks ?
-            renderTasks(props.tasks) :
-            <div className="task-list__empty">Нет задач</div>
-        }
-      </div>
+    <div className={tasks ? `task-list` : 'task-list task-list--empty'}>
+      {
+        tasks ?
+          renderTasks(tasks) :
+          <h2 className="task-list__empty">{title}</h2>
+      }
     </div>
   )
 }

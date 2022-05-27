@@ -5,13 +5,14 @@ import { Header } from "@/components/Header";
 import "./MainLayout.scss"
 
 interface IProps {
-  children?: ReactNode;
+  children: ReactNode;
+  className?: string;
 }
-export const MainLayout: React.FC<IProps> = (props: IProps) => {
+export const MainLayout: React.FC<IProps> = ({ children, className }) => {
   return (<div className="main-layout">
     <Header className="main-layout__header" />
-    <main className="main-layout__content">
-      {props.children}
+    <main className={`main-layout__content ${className}`}>
+      {children}
     </main>
   </div>);
 };

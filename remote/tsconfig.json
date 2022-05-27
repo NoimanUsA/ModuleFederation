@@ -10,6 +10,9 @@
     "types": [
       "react"
     ],
+    "typeRoots": [
+      "src/types"
+    ],
     "moduleResolution": "node",
     "allowJs": false,
     "module": "esnext",
@@ -25,6 +28,7 @@
     "strict": true,
     "esModuleInterop": true,
     "baseUrl": ".",
+    "noImplicitAny": false,
     "paths": {
       "@/*": [
         "./src/*"
