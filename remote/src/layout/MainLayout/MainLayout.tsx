@@ -1,11 +1,11 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import { Header } from "@/components/Header";
 
 //Styles
 import "./MainLayout.scss"
 
 interface IProps {
-  children: ReactNode;
+  children: JSX.Element[] | JSX.Element;
   className?: string;
 }
 export const MainLayout: React.FC<IProps> = ({ children, className }) => {

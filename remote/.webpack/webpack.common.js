@@ -8,7 +8,6 @@ import StylelintPlugin from "stylelint-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-console.log(path.join(__dirname, "../src"));
 export default {
   entry: ["@babel/polyfill", "./src/index.tsx"],
   output: {

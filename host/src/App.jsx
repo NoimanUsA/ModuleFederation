@@ -4,7 +4,6 @@ import ErrorBoundary from "./components/ErrorBoundary.tsx";
 const Button = lazy(() =>
   import("remote/Button").then((module) => ({ default: module.Button }))
 );
-console.log(Button);
 
 const App = () => (
   <div>

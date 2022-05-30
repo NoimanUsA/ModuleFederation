@@ -28,7 +28,7 @@
     "strict": true,
     "esModuleInterop": true,
     "baseUrl": ".",
-    "noImplicitAny": false,
+    // "noImplicitAny": false,
     "paths": {
       "@/*": [
         "./src/*"

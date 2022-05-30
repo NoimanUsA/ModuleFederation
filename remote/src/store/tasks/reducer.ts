@@ -1,43 +1,12 @@
-import { TASKS } from './consts';
+import { TASKS, IAction } from './types';
+import { ITask } from '@/types/components';
 
-const defaultState = {
-  activeTasks: {
-    1: [
-      {
-        text: "Do something",
-        id: 1
-      },
-      {
-        text: "Do something",
-        id: 2
-      },
-      {
-        text: "Do something",
-        id: 3
-      },
-    ]
-  },
-  completedTasks: {
-    1: [
-      {
-        text: "Do something",
-        id: 1
-      },
-      {
-        text: "Do something",
-        id: 2
-      },
-      {
-        text: "Do something",
-        id: 3
-      },
-    ]
-  }
+const initialState = {
+  activeTasks: [],
+  completedTasks: [],
 }
 
-
-
-export default (state = defaultState, { type, payload }) => {
+export default (state = initialState, { payload, type }: IAction) => {
   switch (type) {
     case TASKS.ADD_TASK:
       const newTask = {
@@ -45,19 +14,26 @@ export default (state = defaultState, { type, payload }) => {
         id: payload.id
       };
 
-      const activeTasks = {
-        ...state.activeTasks,
-        [payload.userId]: [...state.activeTasks[payload.userId], newTask]
-      }
-
-      console.log(activeTasks);
-      return { ...state, activeTasks };
+      return {
+        ...state,
+        activeTasks: [
+          ...state.activeTasks,
+          newTask
+        ]
+      };
     case TASKS.DELETE_TASK:
-      return state;
+      return {
+        ...state,
+        completedTasks: state.completedTasks.filter((task: ITask) => task.id !== payload.id)
+      };
     case TASKS.COMPLETE_TASK:
-      return state;
-    case TASKS.RETURN_TASK:
-      return state;
+      const completedTask = state.activeTasks.find((task: ITask) => task.id === payload.id);
+      const newCompletedTasks = [...state.completedTasks, completedTask]
+      const filteredActiveTasks = state.activeTasks.filter((task: ITask) => task.id !== payload.id);
+      return {
+        activeTasks: filteredActiveTasks,
+        completedTasks: newCompletedTasks
+      };
     default:
       return state;
   }

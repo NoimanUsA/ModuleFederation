@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import './Task.scss'
 
 // Types
@@ -6,17 +6,21 @@ import { ITask } from '@/types/components';
 
 interface IProps {
   task: ITask;
-  children?: ReactNode;
+  children?: JSX.Element;
   className?: string;
+  handler: (id: number) => void
+
 }
 
-export const Task: React.FC<IProps> = ({ task, className, children }) => {
+export const Task: React.FC<IProps> = ({ task, className, children, handler }) => {
+  const { text, id } = task
+
   return (
-    <div className={`task ${className}`}>
+    <div className="task" >
       <div className="task__text">
-        {task.text}
+        {text}
       </div>
-      <div className="task__handlers">{children}</div>
-    </div>
+      <div className="task__handler" onClick={() => handler(id)}>x</div>
+    </div >
   )
 }

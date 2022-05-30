@@ -5,7 +5,7 @@ const defaultState = {
 }
 
 
-export default (state = defaultState, action) => {
+export default (state = defaultState, action: { type: keyof USERS }) => {
   switch (action.type) {
     case USERS.REGISTER_USER:
       return state;

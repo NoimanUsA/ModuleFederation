@@ -2,9 +2,9 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  width: 100%;
 
   &--empty {
     justify-content: center;
-    width: 100%;
   }
 }

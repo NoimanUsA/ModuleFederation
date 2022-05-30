@@ -1,16 +1,11 @@
 import { AUTH } from './const'
 
-interface IDefaultState {
-  userId: null | number;
-}
+const initialState = {
+  userId: 1,
+  isAuth: true
+};
 
-const defaultState: IDefaultState = {
-  userId: 1
-}
-
-
-
-export default (state = defaultState, action) => {
+export default (state = initialState, action: { type: keyof AUTH }) => {
   switch (action.type) {
     case AUTH.ENTER:
       return state;

@@ -1,6 +1,13 @@
-import { TASKS } from "./consts"
+import { ITaskPayload, TASKS } from "./types"
 
-export const addTask = (payload) => ({ type: TASKS.ADD_TASK, payload });
-export const deleteTask = (payload) => ({ type: TASKS.DELETE_TASK, payload })
-export const completeTask = (payload) => ({ type: TASKS.COMPLETE_TASK, payload });
-export const returnTask = (payload) => ({ type: TASKS.RETURN_TASK, payload })
+
+const addTask = (payload: ITaskPayload) => ({ type: TASKS.ADD_TASK, payload });
+const deleteTask = (payload: ITaskPayload) => ({ type: TASKS.DELETE_TASK, payload })
+const completeTask = (payload: ITaskPayload) => ({ type: TASKS.COMPLETE_TASK, payload });
+
+
+export default {
+  add: addTask,
+  delete: deleteTask,
+  complete: completeTask
+}
