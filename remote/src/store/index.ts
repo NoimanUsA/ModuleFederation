@@ -1,15 +1,13 @@
-import { legacy_createStore as createStore, combineReducers } from 'redux';
+import { legacy_createStore as createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import createSagaMiddleware from 'redux-saga';
+import rootReducers from './reducers';
+import rootSaga from './saga';
 
-// Reducers
-import tasks from './tasks/reducer';
-import users from './users/reducer';
-import auth from './auth/reducer';
+const sagaMiddleware = createSagaMiddleware();
 
-export const reducers = combineReducers({
-  auth,
-  tasks,
-  users
-})
+const store = createStore(rootReducers, composeWithDevTools(applyMiddleware(sagaMiddleware)));
 
-export const store = createStore(reducers, composeWithDevTools());
+sagaMiddleware.run(rootSaga);
+
+export default store;

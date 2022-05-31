@@ -1,6 +1,6 @@
 import React from "react";
 import { Pages } from "@/pages";
-import { store } from '@/store/index';
+import store from '@/store/index';
 import { Provider } from "react-redux";
 
 import "./App.scss";

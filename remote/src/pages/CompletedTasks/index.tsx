@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { TaskList } from '@/components/TaskList';
 
 // Methods
-import taskActions from "@/store/tasks/actions";
+import taskActions from "@/store/actions/tasks";
 
 
 // Styles

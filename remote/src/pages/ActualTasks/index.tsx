@@ -1,12 +1,13 @@
 import React, { useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useTypedSelector } from "@/hooks/useTypedSelector";
 
 // Components
 import { Button } from "@/components/Button";
 import { TaskList } from "@/components/TaskList";
 
 // Methods
-import taskActions from "@/store/tasks/actions";
+import taskActions from "@/store/actions/tasks";
 
 // Layout
 import { MainLayout } from "@/layout/MainLayout/MainLayout";
@@ -17,7 +18,7 @@ import './ActualTasks.scss'
 
 export const ActualTasks = () => {
   const dispatch = useDispatch();
-  const { activeTasks: tasks } = useSelector(state => state.tasks);
+  const tasks = useTypedSelector(state => state.tasks);
 
   const input = useRef<HTMLInputElement>(null);
 
