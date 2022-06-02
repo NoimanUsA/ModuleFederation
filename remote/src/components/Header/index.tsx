@@ -33,7 +33,7 @@ export const Header: React.FC<IProps> = ({ className }) => {
             <NavLink key={index} className="header__nav-link" activeClassName='header__nav-link--active' to={link.path}>{link.text}</NavLink>)
         })}
       </nav>
-      <div className="header__exit">Выход</div>
+      {/* <div className="header__exit">Выход</div> */}
     </header>
   )
 }

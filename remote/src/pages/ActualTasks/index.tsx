@@ -1,37 +1,41 @@
-import React, { useRef } from "react";
-import { useDispatch } from "react-redux";
 import { useTypedSelector } from "@/hooks/useTypedSelector";
 
 // Components
 import { Button } from "@/components/Button";
 import { TaskList } from "@/components/TaskList";
 
-// Methods
-import taskActions from "@/store/actions/tasks";
-
 // Layout
 import { MainLayout } from "@/layout/MainLayout/MainLayout";
 
-// Styles
-import './ActualTasks.scss'
+// Methods
+import tasksActions from "@/store/actions/tasks";
+import React, { useEffect, useRef } from "react";
+import { useDispatch } from "react-redux";
 
+// Styles
+import './ActualTasks.scss';
 
 export const ActualTasks = () => {
   const dispatch = useDispatch();
-  const tasks = useTypedSelector(state => state.tasks);
+  const tasks = useTypedSelector(state => state.tasks.activeTasks);
+
+  useEffect(() => {
+    dispatch(tasksActions.fetchTasks())
+  }, [])
 
   const input = useRef<HTMLInputElement>(null);
 
   const addNewTask = () => {
     if (!input.current?.value) return;
-    dispatch(taskActions.add({
+    dispatch(tasksActions.addTask({
       text: input.current?.value,
-      id: Math.random() * 10,
+      id: Math.floor(Math.random() * 100),
     }))
+    input.current.value = "";
   }
 
   const completeTask = (id: number) => {
-    dispatch(taskActions.complete({ id }))
+    dispatch(tasksActions.completeTask({ id }))
   };
 
   return (

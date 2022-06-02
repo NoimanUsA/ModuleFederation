@@ -1,15 +1,35 @@
+import { ITask } from '@/types/components';
+
 export enum TASKS {
   ADD_TASK = "ADD_TASK",
   DELETE_TASK = "DELETE_TASK",
   COMPLETE_TASK = "COMPLETE_TASK",
+  FETCH_TASKS = "FETCH_TASKS",
+  SET_FETCHED_TASKS = "SET_FETCHED_TASKS"
 }
 
-export interface ITaskPayload {
-  id: number;
-  text?: string;
+export interface TasksState {
+  activeTasks: ITask[];
+  completedTasks: ITask[];
+}
+// Payloads
+
+export type TasksPayload = { id: number; text?: string; };
+
+// Actions
+
+export interface FetchTasksAction {
+  type: TASKS.FETCH_TASKS
 }
 
-export interface IAction {
-  type: keyof TASKS;
-  payload: ITaskPayload
+export interface SetTasksAction {
+  type: TASKS.SET_FETCHED_TASKS,
+  payload: TasksState
 }
+
+export interface MainTasksAction {
+  type: Omit<TASKS, "SET_FETCHED_TASKS" | "FETCH_TASKS">;
+  payload: TasksPayload
+}
+
+export type TasksAction = MainTasksAction | FetchTasksAction | SetTasksAction;

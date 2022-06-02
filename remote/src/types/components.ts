@@ -1,4 +1,4 @@
 export interface ITask {
-  text: string;
+  text?: string;
   id: number
 }

@@ -1,42 +1,49 @@
-import { TASKS, IAction } from '../types/tasks';
 import { ITask } from '@/types/components';
+import { TASKS, TasksState, TasksAction, MainTasksAction } from '../types/tasks';
 
-const initialState: {
-  activeTasks: ITask[];
-  completedTasks: ITask[];
-} = {
+
+const initialState: TasksState = {
   activeTasks: [],
   completedTasks: [],
 }
 
-export default (state = initialState, { payload, type }: IAction) => {
+export default (state = initialState, action: TasksAction): TasksState => {
+
+  if (action.type === TASKS.FETCH_TASKS) return state;
+
+  const { payload, type } = action;
+
   switch (type) {
     case TASKS.ADD_TASK:
-      const newTask = {
-        text: payload.text,
-        id: payload.id
-      };
-
       return {
         ...state,
         activeTasks: [
           ...state.activeTasks,
-          newTask
+          {
+            text: payload.text,
+            id: payload.id
+          }
         ]
-      };
+      }
+
     case TASKS.DELETE_TASK:
       return {
         ...state,
-        completedTasks: state.completedTasks.filter((task: ITask) => task.id !== payload.id)
+        completedTasks: state.completedTasks.filter((task) => task.id !== payload.id)
       };
+
     case TASKS.COMPLETE_TASK:
-      const completedTask = state.activeTasks.find((task: ITask) => task.id === payload.id);
-      const newCompletedTasks = [...state.completedTasks, completedTask]
-      const filteredActiveTasks = state.activeTasks.filter((task: ITask) => task.id !== payload.id);
+      const completedTask = state.activeTasks.find((task) => task.id === payload.id) as ITask;
+      const newCompletedTasks = [...state.completedTasks, completedTask];
+      const filteredActiveTasks = state.activeTasks.filter((task) => task.id !== payload.id);
       return {
         activeTasks: filteredActiveTasks,
         completedTasks: newCompletedTasks
       };
+
+    case TASKS.SET_FETCHED_TASKS:
+      return payload as TasksState;
+
     default:
       return state;
   }

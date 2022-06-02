@@ -1,5 +1,5 @@
-import { addTaskSaga } from "./tasks";
+import tasksSaga from "./tasks";
 
 export default function* rootSaga() {
-  yield addTaskSaga();
+  yield tasksSaga();
 }

@@ -1,7 +1,5 @@
 import { TypedUseSelectorHook, useSelector } from "react-redux";
-import rootReducers from '@/store/reducers';
-
-type RootReducer = ReturnType<typeof rootReducers>;
+import { RootReducer } from '@/store/reducers';
 
 
 export const useTypedSelector: TypedUseSelectorHook<RootReducer> = useSelector;

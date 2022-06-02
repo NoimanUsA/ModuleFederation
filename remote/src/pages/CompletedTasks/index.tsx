@@ -1,24 +1,27 @@
 import { MainLayout } from "@/layout/MainLayout/MainLayout";
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useTypedSelector } from "@/hooks/useTypedSelector";
 
 // Components
 import { TaskList } from '@/components/TaskList';
 
 // Methods
-import taskActions from "@/store/actions/tasks";
-
+import tasksActions from "@/store/actions/tasks";
 
 // Styles
 import './CompletedTasks.scss'
 
 export const CompletedTasks = () => {
   const dispatch = useDispatch();
-  const { completedTasks: tasks } = useSelector(state => state.tasks);
+  const tasks = useTypedSelector(state => state.tasks.completedTasks);
 
+  useEffect(() => {
+    dispatch(tasksActions.fetchTasks())
+  }, [])
 
   function deleteTask(id: number) {
-    dispatch(taskActions.delete({ id }))
+    dispatch(tasksActions.deleteTask({ id }))
   }
 
   return (

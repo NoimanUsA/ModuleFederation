@@ -14,6 +14,7 @@ export const Pages = () => (
     <Switch>
       <Route path={URL.TASKS} component={ActualTasks} />
       <Route path={URL.COMPLETED_TASKS} component={CompletedTasks} />
+      <Redirect to={URL.TASKS} />
     </Switch>
   </Router>);
 
