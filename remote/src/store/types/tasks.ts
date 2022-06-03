@@ -17,11 +17,6 @@ export interface TasksState {
 export type TasksPayload = { id: number; text?: string; };
 
 // Actions
-
-export interface FetchTasksAction {
-  type: TASKS.FETCH_TASKS
-}
-
 export interface SetTasksAction {
   type: TASKS.SET_FETCHED_TASKS,
   payload: TasksState
@@ -32,4 +27,4 @@ export interface MainTasksAction {
   payload: TasksPayload
 }
 
-export type TasksAction = MainTasksAction | FetchTasksAction | SetTasksAction;
+export type TasksAction = MainTasksAction | SetTasksAction;

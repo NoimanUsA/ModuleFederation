@@ -1,7 +1,13 @@
 import { TASKS, TasksState } from "../types/tasks";
-import { takeEvery, select, put, call, fork } from 'redux-saga/effects';
+import { takeEvery, select, put, fork, join, ForkEffect } from 'redux-saga/effects';
 import taskActions from '@/store/actions/tasks';
-import { useDispatch } from "react-redux";
+import { Task } from "redux-saga";
+
+const delay = (fn: () => unknown, time = 1000) => new Promise((resolve) => {
+  setTimeout(() => {
+    resolve(fn());
+  }, time)
+});
 
 const getTasks = (): TasksState => {
   const tasks = window.localStorage.getItem('tasks');
@@ -11,6 +17,7 @@ const getTasks = (): TasksState => {
       completedTasks: []
     };
   }
+
   return JSON.parse(tasks);
 }
 
@@ -23,13 +30,13 @@ function* tasksWorker() {
   yield fork(setTasks, allTasks);
 }
 
-function* setTasksWorker() {
-  const tasks: TasksState = yield call(getTasks);
-  yield put(taskActions.setTasks(tasks));
+export function* setTasksWorker() {
+  const tasks: Task = yield fork(getTasks);
+  const first: TasksState = yield join(tasks);
+  yield put(taskActions.setTasks(first));
 }
 
 export default function* () {
-  yield takeEvery(TASKS.FETCH_TASKS, setTasksWorker);
   yield takeEvery(TASKS.ADD_TASK, tasksWorker);
   yield takeEvery(TASKS.COMPLETE_TASK, tasksWorker);
   yield takeEvery(TASKS.DELETE_TASK, tasksWorker);

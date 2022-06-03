@@ -1,5 +1,5 @@
 import { ITask } from '@/types/components';
-import { TASKS, TasksState, TasksAction, MainTasksAction } from '../types/tasks';
+import { TASKS, TasksAction, TasksState } from '../types/tasks';
 
 
 const initialState: TasksState = {
@@ -8,8 +8,6 @@ const initialState: TasksState = {
 }
 
 export default (state = initialState, action: TasksAction): TasksState => {
-
-  if (action.type === TASKS.FETCH_TASKS) return state;
 
   const { payload, type } = action;
 
@@ -42,6 +40,7 @@ export default (state = initialState, action: TasksAction): TasksState => {
       };
 
     case TASKS.SET_FETCHED_TASKS:
+      console.log(payload);
       return payload as TasksState;
 
     default:

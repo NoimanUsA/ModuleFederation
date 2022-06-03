@@ -9,7 +9,7 @@ import { MainLayout } from "@/layout/MainLayout/MainLayout";
 
 // Methods
 import tasksActions from "@/store/actions/tasks";
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { useDispatch } from "react-redux";
 
 // Styles
@@ -18,10 +18,6 @@ import './ActualTasks.scss';
 export const ActualTasks = () => {
   const dispatch = useDispatch();
   const tasks = useTypedSelector(state => state.tasks.activeTasks);
-
-  useEffect(() => {
-    dispatch(tasksActions.fetchTasks())
-  }, [])
 
   const input = useRef<HTMLInputElement>(null);
 
@@ -47,4 +43,4 @@ export const ActualTasks = () => {
       </div>
     </MainLayout>
   );
-};
+}
